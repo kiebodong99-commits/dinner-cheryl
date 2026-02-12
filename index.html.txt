@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinner Proposal for Cheryl 💕</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(to bottom right, #ffe6f0, #fff5f9);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        color: #ff4d88;
+        margin-bottom: 40px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 20px;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    #yesBtn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: #ff4d4d;
+        color: white;
+    }
+
+    #bunnyContainer {
+        margin-top: 30px;
+        display: none;
+        animation: pop 0.5s ease;
+    }
+
+    #bunnyContainer img {
+        width: 200px;
+    }
+
+    #bunnyText {
+        font-size: 18px;
+        margin-top: 10px;
+        color: #ff66a3;
+        font-weight: bold;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Cheryl 💕<br>Will we have a dinner tonight?</h1>
+
+<div class="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙈</button>
+</div>
+
+<div id="bunnyContainer">
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute Bunny">
+    <div id="bunnyText"></div>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <!-- Replace this link with a valid MP3 file if needed -->
+    <source src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/aa/bb/cc/aabbccdd-eeff-gg.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const bunnyContainer = document.getElementById("bunnyContainer");
+    const bunnyText = document.getElementById("bunnyText");
+    const bgMusic = document.getElementById("bgMusic");
+
+    let yesScale = 1;
+    let noScale = 1;
+    let musicStarted = false;
+
+    const messages = [
+        "Are you suuuure, pretty Cheryl?",
+        "What if I promise extra giggles?",
+        "But I already practiced my charming smile.",
+        "Can I trade one smile for one meal?",
+        "What if it’s the yummiest yes ever?",
+        "Just food… and my adorable company?",
+        "Okay okay… but what if I say PRETTTYYYY please?"
+    ];
+
+    let messageIndex = 0;
+
+    function startMusic() {
+        if (!musicStarted) {
+            bgMusic.play().catch(() => {});
+            musicStarted = true;
+        }
+    }
+
+    // YES button action
+    yesBtn.addEventListener("click", () => {
+        startMusic();
+        alert("I know you would like to, princesssss! :) 💕");
+    });
+
+    // NO button action
+    noBtn.addEventListener("click", () => {
+        startMusic();
+
+        // Resize buttons
+        yesScale *= 1.15;
+        noScale *= 0.85;
+
+        yesBtn.style.transform = `scale(${yesScale})`;
+        noBtn.style.transform = `scale(${noScale})`;
+
+        // Show bunny
+        bunnyContainer.style.display = "block";
+
+        // Show different message each time
+        bunnyText.textContent = messages[messageIndex];
+        messageIndex = (messageIndex + 1) % messages.length;
+    });
+</script>
+
+</body>
+</html>
